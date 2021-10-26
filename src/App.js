@@ -1,4 +1,5 @@
-import "./App.css";
+
+// import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Provider } from "react-redux";
@@ -6,8 +7,12 @@ import store from './redux/store'
 import Header from "./components/Header";
 import HomeScreen from "./screens/HomeScreen";
 import FavoriteScreen from "./screens/FavoriteScreen";
+import {useEffect} from 'react'
 
 function App() {
+
+  
+
   return (
     <div className="App">
       <Provider store={store}>

@@ -7,10 +7,9 @@ body {
     background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-
 /* darkmode invert 1 && lightmode invert -1 */
 html, img,.navbar,.badge.text-dark.bg-warning,.alert{
-    filter: invert(-1) hue-rotate(180deg);
+    filter: invert(1) hue-rotate(180deg);
     transition: color 300ms, background-color 300ms;
    
 }

@@ -1,18 +1,35 @@
-import React from "react";
-import { Navbar, Nav, Container ,Button} from "react-bootstrap";
+import React,{useEffect,useState} from "react";
+import { Navbar, Nav, Container ,Button,Row,Col} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
+
+  const [theme,setTheme] = useState('light')
+
+  useEffect(() => {
+        
+    //setTheme('light')
+    // Importing files depending on theme
+    if(theme==='light') import (`../App.css`);
+    else if(theme==='dark') import (`../darkMode.css`);
+   
+}, [theme]);
+
+const handleTheme = ()=>{
+
+  theme==='light' ? setTheme('dark') : setTheme('light')
+}
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand='lg' bg={theme==='dark' ? 'dark' : 'light'} variant={theme==='dark' ? 'dark' : 'light'}>
       <Container>
-        <Navbar.Brand href="/">Weather App</Navbar.Brand>
+        <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <LinkContainer to="/">
               <Nav.Link>
-               <Button variant="outline-light">
+               <Button variant={theme==='dark' ? 'outline-light' : 'outline-dark'}>
                <i className="bi bi-house-door"></i> Home
                </Button>
                
@@ -21,17 +38,17 @@ const Header = () => {
             <LinkContainer to="/favorites">
             
               <Nav.Link>
-              <Button variant="outline-light">
+              <Button variant={theme==='dark' ? 'outline-light' : 'outline-dark'}>
               <i className="bi bi-heart"></i> Favorites
                </Button>
          
               </Nav.Link>
             </LinkContainer>
           </Nav>    
-        <div style={{display:'flex',gap:10}}>
-        <Button variant="outline-light"><i className="bi bi-brightness-high"></i> Change Theme</Button>
-        <Button variant="outline-warning"><i className="bi bi-thermometer-half"></i> C</Button>
-        </div>
+       <Col className='d-flex gap-2' lg={2} >
+        <Button variant={theme==='dark' ? 'outline-light' : 'outline-dark'}  onClick={handleTheme}><i class="bi bi-moon-fill"/></Button>
+        <Button   variant={theme==='dark' ? 'outline-light' : 'outline-dark'}><i className="bi bi-thermometer-half"></i></Button>
+        </Col>
        
         </Navbar.Collapse>
       </Container>
