@@ -54,7 +54,7 @@ export const getCurrentLocation = (locationKey='215854',localizedName='Tel Aviv'
         dispatch({type: CURRENT_LOCATION_REQUEST})
    
           const { data } = await axios.get(
-            `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}`
+            `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}`
           );
          
           if(data){
@@ -84,7 +84,7 @@ export const getGeoLocation = (latitude, longitude) => async (dispatch,getState)
     dispatch({type: GEO_LOCATION_REQUEST})
 
       const { data } = await axios.get(
-        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${latitude}%2C${longitude}`
+        `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${latitude}%2C${longitude}`
       );
      
       if(data){
@@ -111,7 +111,7 @@ export const get5DayForecast = (locationKey,metric=true) => async (dispatch) =>{
     dispatch({type: FORECAST_LOCATION_REQUEST})
 
       const { data } = await axios.get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&metric=${metric}`
+        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}&metric=${metric}`
       );
      
       if(data){
