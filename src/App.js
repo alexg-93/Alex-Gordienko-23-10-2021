@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { Provider } from "react-redux";
+import store from './redux/store'
+import Header from "./components/Header";
+import HomeScreen from "./screens/HomeScreen";
+import FavoriteScreen from "./screens/FavoriteScreen";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <Router>
+          <Header />
+          <Container>
+            <Route exact path="/" component={HomeScreen}/>
+            <Route  path="/location/:id/:name" component={HomeScreen}/>
+            <Route path="/favorites" component={FavoriteScreen}/>
+          </Container>
+        </Router>
+      </Provider>
     </div>
   );
 }
