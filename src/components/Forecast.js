@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col, ListGroup, Image } from "react-bootstrap";
+import { Row, Col, ListGroup, Image,Badge } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { get5DayForecast } from "../redux/actions/weatherActions";
 import moment from "moment";
@@ -33,16 +33,18 @@ const Forecast = () => {
           forecast.DailyForecasts.map((data, idx) => (
             <ListGroup.Item key={idx}>
               <Row className="d-flex p-3 text-center" lg={1} md={4} xs={4}>
-                <Col>{moment(data.Date).format("dddd")}</Col>
-                <Col>{data.Day.IconPhrase}</Col>
+                <Col style={{fontSize:22 ,fontWeight:800}}>{moment(data.Date).format("dddd")}</Col>
+                <Col style={{fontSize:18 ,fontWeight:600}}>{data.Day.IconPhrase}</Col>
                 <Col>
                   <Image src={images[data.Day.Icon].src}></Image>
                 </Col>
-                <Col>
+                <Col style={{fontSize:20 ,fontWeight:'800'}}>
+              
                   {data.Temperature.Minimum.Value}{" "}
                   {data.Temperature.Minimum.Unit}° /{" "}
                   {data.Temperature.Maximum.Value}{" "}
                   {data.Temperature.Minimum.Unit}°{" "}
+              
                 </Col>
               </Row>
             </ListGroup.Item>

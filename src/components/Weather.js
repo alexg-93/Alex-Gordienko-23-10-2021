@@ -41,14 +41,15 @@ const Weather = ({ location, localizedName, id, liked,redirect}) => {
       text="dark"
       style={{
         width: "300px",
-        backgroundImage: "linear-gradient()",
+      
         boxShadow: "0px 3px 16px 4px #000000",
+   
       }}
       className="mb-2 d-flex text-center"
     >
       <Card.Header>
       
-      <span style={{ fontSize: 24 }}>{localizedName}</span>
+      <span style={{ fontSize: 30}}>{localizedName}</span>
        
         <i
           className={!isLiked ? "bi bi-heart" : "bi bi-heart-fill"}
