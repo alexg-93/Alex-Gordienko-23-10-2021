@@ -33,12 +33,12 @@ const Forecast = () => {
           forecast.DailyForecasts.map((data, idx) => (
             <ListGroup.Item key={idx}>
               <Row className="d-flex p-3 text-center" lg={1} md={4} xs={4}>
-                <Col style={{fontSize:22 ,fontWeight:800}}>{moment(data.Date).format("dddd")}</Col>
-                <Col style={{fontSize:18 ,fontWeight:600}}>{data.Day.IconPhrase}</Col>
+                <Col >{moment(data.Date).format("dddd")}</Col>
+                <Col >{data.Day.IconPhrase}</Col>
                 <Col>
                   <Image src={images[data.Day.Icon].src}></Image>
                 </Col>
-                <Col style={{fontSize:20 ,fontWeight:'800'}}>
+                <Col >
               
                   {data.Temperature.Minimum.Value}{" "}
                   {data.Temperature.Minimum.Unit}° /{" "}
