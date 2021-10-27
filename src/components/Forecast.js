@@ -12,6 +12,9 @@ const Forecast = () => {
   const currentLocation = useSelector((state) => state.currentLocationReducer);
   const { location, key } = currentLocation;
 
+  const preferences = useSelector((state) => state.preferenceReducer);
+  const { isMetric } = preferences;
+
   const forecastReducer = useSelector((state) => state.forecastReducer);
   const { loading, error, forecast } = forecastReducer;
 
@@ -41,10 +44,14 @@ const Forecast = () => {
                     <Image src={images[data.Day.Icon].src}></Image>
                   </Col>
                   <Col>
-                    {data.Temperature.Minimum.Value}{" "}
-                    {data.Temperature.Minimum.Unit}° /{" "}
-                    {data.Temperature.Maximum.Value}{" "}
-                    {data.Temperature.Minimum.Unit}°{" "}
+
+                    {isMetric ? `${data.Temperature.Minimum.Value}` : (data.Temperature.Minimum.Value * 9 / 5 + 32).toFixed(1)}
+                    {"/"}
+                    {isMetric ? `${data.Temperature.Maximum.Value}C°` : `${ (data.Temperature.Maximum.Value * 9 / 5 + 32).toFixed(1)}F°`}
+                  
+            
+
+               
                   </Col>
                 </Row>
               </ListGroup.Item>

@@ -1,25 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container, Button, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import {useSelector,useDispatch} from 'react-redux'
+import {preference} from '../redux/actions/preferenceActions'
 
 const Header = () => {
-  const [theme, setTheme] = useState("light");
+
+  const dispatch = useDispatch()
+  const preferences = useSelector(state=>state.preferenceReducer)
+
+  const {isMetric,theme} = preferences
+
+  const [selectedTheme, setSelectedTheme] = useState(theme);
+  const [Metric,setMetric] = useState(isMetric)
 
   useEffect(() => {
     // Importing files depending on theme
-    if (theme === "light") import(`../App.css`);
-    else if (theme === "dark") import(`../darkMode.css`);
-  }, [theme]);
+    if (selectedTheme === "light") import(`../App.css`);
+    else if (selectedTheme === "dark") import(`../darkMode.css`);
+
+    dispatch(preference(Metric,selectedTheme))
+   
+  }, [dispatch,Metric,selectedTheme]);
 
   const handleTheme = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    selectedTheme === "light" ? setSelectedTheme("dark") : setSelectedTheme("light");
   };
+
+  const handleMetric = () => {
+    Metric === true ? setMetric(false) : setMetric(true)
+   
+  }
+
 
   return (
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg={theme === "dark" ? "dark" : "light"}
+      bg={selectedTheme === "dark" ? "dark" : "light"}
       variant={theme === "dark" ? "dark" : "light"}
     >
       <Container>
@@ -30,7 +48,7 @@ const Header = () => {
             <LinkContainer to="/">
               <Nav.Link>
                 <Button
-                  variant={theme === "dark" ? "outline-light" : "outline-dark"}
+                  variant={selectedTheme === "dark" ? "outline-light" : "outline-dark"}
                 >
                   <i className="bi bi-house-door"></i> Home
                 </Button>
@@ -39,7 +57,7 @@ const Header = () => {
             <LinkContainer to="/favorites">
               <Nav.Link>
                 <Button
-                  variant={theme === "dark" ? "outline-light" : "outline-dark"}
+                  variant={selectedTheme === "dark" ? "outline-light" : "outline-dark"}
                 >
                   <i className="bi bi-heart"></i> Favorites
                 </Button>
@@ -48,15 +66,16 @@ const Header = () => {
           </Nav>
           <Col className="d-flex gap-2" lg={2}>
             <Button
-              variant={theme === "dark" ? "outline-light" : "outline-dark"}
-              onClick={handleTheme}
+              variant={selectedTheme === "dark" ? "outline-light" : "outline-dark"}
+              onClick={()=>handleTheme()}
             >
               <i class="bi bi-moon-fill" />
             </Button>
             <Button
-              variant={theme === "dark" ? "outline-light" : "outline-dark"}
+              variant={selectedTheme === "dark" ? "outline-light" : "outline-dark"}
+              onClick={()=>handleMetric()}
             >
-              <i className="bi bi-thermometer-half"></i>
+            °{Metric ? 'C' : 'F'}
             </Button>
           </Col>
         </Navbar.Collapse>

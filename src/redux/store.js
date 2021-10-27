@@ -11,8 +11,10 @@ import {
   favoritesReducer
 } from "../redux/reducers/favoritesReducer";
 
+import {preferenceReducer }from "../redux/reducers/preferenceReducer"
 
 const reducer = combineReducers({
+  preferenceReducer ,
   locationsReducer,
   currentLocationReducer,
   forecastReducer,

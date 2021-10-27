@@ -11,6 +11,9 @@ import { LinkContainer } from "react-router-bootstrap";
 const Weather = ({ location, localizedName, id, liked, redirect }) => {
   const dispatch = useDispatch();
 
+  const preferences = useSelector((state) => state.preferenceReducer);
+
+  const { isMetric } = preferences;
   const [isLiked, setIsLiked] = useState(liked);
 
   const handleAddFavoriteLocation = () => {
@@ -76,8 +79,11 @@ const Weather = ({ location, localizedName, id, liked, redirect }) => {
         <Card.Footer className="text-muted">
           {" "}
           <Badge bg="warning" text="dark" style={{ fontSize: 20 }}>
-            {location.Temperature.Metric.Value}{" "}
-            {location.Temperature.Metric.Unit}°
+            {isMetric
+              ? `${location.Temperature.Metric.Value} ${location.Temperature.Metric.Unit}°`
+              : `${((location.Temperature.Metric.Value * 9) / 5 + 32).toFixed(
+                  1
+                )} ${location.Temperature.Imperial.Unit}°`}
           </Badge>
         </Card.Footer>
       </Card>
@@ -86,3 +92,5 @@ const Weather = ({ location, localizedName, id, liked, redirect }) => {
 };
 
 export default Weather;
+
+//location.Temperature.Metric.Value location.Temperature.Metric.Unit °

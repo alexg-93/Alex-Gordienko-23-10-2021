@@ -14,6 +14,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const HomeScreen = ({ match }) => {
+
+
   const [locationKey, setLocationKey] = useState(match.params.id);
   const [locationName, setLocationName] = useState(match.params.name);
 
