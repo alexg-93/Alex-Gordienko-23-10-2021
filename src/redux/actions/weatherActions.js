@@ -42,7 +42,7 @@ export const getLocations = (keyword) => async (dispatch,getState) => {
      catch (error) {
         dispatch({
             type:AUTOCOMPLETE_LOCATIONS_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+            payload: error.message
         })
         
   } 
@@ -72,7 +72,7 @@ export const getCurrentLocation = (locationKey='215854',localizedName='Tel Aviv'
      catch (error) {
         dispatch({
             type:CURRENT_LOCATION_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+            payload: error.message
         })
         
   } 
@@ -99,7 +99,7 @@ export const getGeoLocation = (latitude, longitude) => async (dispatch,getState)
  catch (error) {
     dispatch({
         type:GEO_LOCATION_FAIL,
-        payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        payload: error.message
     })
     
 } 
@@ -128,7 +128,7 @@ export const get5DayForecast = (locationKey,metric=true) => async (dispatch) =>{
  catch (error) {
     dispatch({
         type:FORECAST_LOCATION_FAIL,
-        payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        payload: error.message
     })
     
 } 
