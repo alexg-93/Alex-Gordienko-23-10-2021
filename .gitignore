@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 
-/weather-app/src/redux/config.js
+/src/redux/config.js
 # testing
 /coverage
 
