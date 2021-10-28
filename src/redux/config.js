@@ -1,3 +1,3 @@
 
 
-export const API_KEY = 'svk6prl2iiHQ3yiOyw35Hon5QwTcCJRZ'
+export const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
